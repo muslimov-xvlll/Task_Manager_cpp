@@ -50,7 +50,13 @@ bool isValidDateFormat(const std::string& date) {
 void getToday(int& d, int& m, int& y) {
 	time_t now = time(nullptr);
 	tm local{};
+
+	#ifdef _WIN32
 	localtime_s(&local, &now);
+	#else
+	localtime_r(&now, &local);
+	#endif
+
 
 	d = local.tm_mday;
 	m = local.tm_mon + 1;
@@ -101,9 +107,9 @@ string statusToString(Status s) {
 }
 
 void TaskManager::listTasks() const {
-	uiHeader("СПИСОК ЗАДАЧ");
+	uiHeader("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
 
-	uiTableRow("ID", "Статус", "Название", "Дедлайн", "Создано");
+	uiTableRow("ID", "пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 	uiLine(70);
 
 	for (const auto& t : tasks) {
@@ -122,9 +128,9 @@ void TaskManager::viewTask(int id) const {
 	for (const auto& task : tasks) {
 		if (task.getId() == id) {
 
-			uiHeader("ПРОСМОТР ЗАДАЧИ");
+			uiHeader("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 
-			uiTableRow("ID", "Статус", "Название", "Дедлайн", "Создано");
+			uiTableRow("ID", "пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 			uiLine(60);
 
 			uiTableRow(
@@ -137,8 +143,8 @@ void TaskManager::viewTask(int id) const {
 
 			uiLine(60);
 
-			// Описание — отдельным блоком
-			uiSection("Описание");
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+			uiSection("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 			std::cout << task.getDescription() << "\n";
 
 			uiLine(60);
@@ -146,7 +152,7 @@ void TaskManager::viewTask(int id) const {
 		}
 	}
 
-	uiError("Задача с таким ID не найдена");
+	uiError("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ ID пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 }
 
 bool TaskManager::removeTask(int id) {
@@ -301,7 +307,7 @@ void TaskManager::sortTasks(SortMode mode) {
 
 void TaskManager::listTasksFiltered(FilterMode mode) const {
 	if (tasks.empty()) {
-		std::cout << "Задач пока нет.\n";
+		std::cout << "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.\n";
 		return;
 	}
 

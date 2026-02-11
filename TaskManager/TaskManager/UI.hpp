@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include <windows.h>
 
 // Цвета
 enum class UIColor {

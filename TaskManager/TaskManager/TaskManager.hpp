@@ -4,7 +4,7 @@
 #include <vector>
 using namespace std;
 
-//перечисление видов сортировки
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 enum class SortMode {
 	ById,
 	ByTitle,
@@ -12,7 +12,7 @@ enum class SortMode {
 	ByStatus
 };
 
-//перечисление видов фильтров
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 enum class FilterMode {
 	All,
 	OnlyToDo,

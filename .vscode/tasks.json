@@ -1,0 +1,23 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "build",
+            "command": "g++",
+            "args": [
+                "-std=c++17",
+                "/home/ramis/GitHub/Task_Manager_cpp/TaskManager/TaskManager/*.cpp",
+                "-o",
+                "/home/ramis/GitHub/Task_Manager_cpp/TaskManager/TaskManager/x64/Debug/build/taskmanager"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+	]
+}

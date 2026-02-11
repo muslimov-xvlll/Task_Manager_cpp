@@ -2,8 +2,33 @@
 #include <iostream>
 #include <iomanip>
 
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 void uiSetColor(UIColor color) {
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (int)color);
+#ifdef _WIN32
+    HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(h, static_cast<int>(color));
+#else
+    switch (color) {
+        case UIColor::Default: std::cout << "\033[0m"; break;
+        case UIColor::Header:  std::cout << "\033[36m"; break; // голубой
+        case UIColor::Success: std::cout << "\033[32m"; break; // зелёный
+        case UIColor::Warning: std::cout << "\033[33m"; break; // жёлтый
+        case UIColor::Error:   std::cout << "\033[31m"; break; // красный
+        case UIColor::Frame:   std::cout << "\033[34m"; break; // синий
+    }
+#endif
+}
+
+void uiResetColor() {
+#ifdef _WIN32
+    HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(h, 7);
+#else
+    std::cout << "\033[0m";
+#endif
 }
 
 void uiLine(int length) {

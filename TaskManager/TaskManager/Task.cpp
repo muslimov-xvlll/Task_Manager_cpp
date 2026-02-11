@@ -1,14 +1,18 @@
 #include "Task.hpp"
 #include <sstream>
 #include <iostream>
-#include "Color.hpp"
+#include "UI.hpp"
 #include <ctime>
 
 string getCurrentDate() {
     time_t now = time(nullptr);
     tm local{};
-    localtime_s(&local, &now);
 
+    #ifdef _WIN32
+    localtime_s(&local, &now);
+    #else
+    localtime_r(&now, &local);
+    #endif
     char buffer[11];
     strftime(buffer, sizeof(buffer), "%d.%m.%Y", &local);
 
@@ -46,31 +50,31 @@ string Task::toString() const {
     std::stringstream ss;
     ss << "[" << id << "] "
         << "(" << statusToString(status) << ") "
-        << title << " — дедлайн: " << deadline << "\n"
-        << "Описание: " << description << "\n"
-        << "Создано: " << createdDate;
+        << title << " пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " << deadline << "\n"
+        << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " << description << "\n"
+        << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " << createdDate;
     return ss.str();
 }
 
 void Task::print() const {
-    // Выбор цвета по статусу
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     switch (status) {
     case Status::ToDo:
-        setColor(COLOR_TODO);
+        uiSetColor(UIColor::Warning);
         break;
     case Status::InProgress:
-        setColor(COLOR_INPROGRESS);
+        uiSetColor(UIColor::Header);
         break;
     case Status::Done:
-        setColor(COLOR_DONE);
+        uiSetColor(UIColor::Success);
         break;
     }
 
-    // Вывод задачи
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     std::cout << toString() << "\n";
 
-    // Сброс цвета
-    setColor(COLOR_DEFAULT);
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    uiSetColor(UIColor::Default);
 }
 
 
