@@ -107,52 +107,52 @@ string statusToString(Status s) {
 }
 
 void TaskManager::listTasks() const {
-	uiHeader("������ �����");
+  uiHeader("СПИСОК ЗАДАЧ");
 
-	uiTableRow("ID", "������", "��������", "�������", "�������");
-	uiLine(70);
+  uiTableRow("ID", "Статус", "Название", "Дедлайн", "Создано");
+  uiLine(70);
 
-	for (const auto& t : tasks) {
-		uiTableRow(
-			std::to_string(t.getId()),
-			statusToString(t.getStatus()),
-			t.getTitle(),
-			t.getDeadline(),
-			t.getCreatedDate()
-		);
-	}
+  for (const auto& t : tasks) {
+    uiTableRow(
+      std::to_string(t.getId()),
+      statusToString(t.getStatus()),
+      t.getTitle(),
+      t.getDeadline(),
+      t.getCreatedDate()
+    );
+  }
 
 }
 
 void TaskManager::viewTask(int id) const {
-	for (const auto& task : tasks) {
-		if (task.getId() == id) {
+  for (const auto& task : tasks) {
+    if (task.getId() == id) {
 
-			uiHeader("�������� ������");
+      uiHeader("ПРОСМОТР ЗАДАЧИ");
 
-			uiTableRow("ID", "������", "��������", "�������", "�������");
-			uiLine(60);
+      uiTableRow("ID", "Статус", "Название", "Дедлайн", "Создано");
+      uiLine(60);
 
-			uiTableRow(
-				std::to_string(task.getId()),
-				statusToString(task.getStatus()),
-				task.getTitle(),
-				task.getDeadline(),
-				task.getCreatedDate()
-			);
+      uiTableRow(
+        std::to_string(task.getId()),
+        statusToString(task.getStatus()),
+        task.getTitle(),
+        task.getDeadline(),
+        task.getCreatedDate()
+      );
 
-			uiLine(60);
+      uiLine(60);
 
-			// �������� � ��������� ������
-			uiSection("��������");
-			std::cout << task.getDescription() << "\n";
+      // Описание — отдельным блоком
+      uiSection("Описание");
+      std::cout << task.getDescription() << "\n";
 
-			uiLine(60);
-			return;
-		}
-	}
+      uiLine(60);
+      return;
+    }
+  }
 
-	uiError("������ � ����� ID �� �������");
+  uiError("Задача с таким ID не найдена");
 }
 
 bool TaskManager::removeTask(int id) {
@@ -307,7 +307,7 @@ void TaskManager::sortTasks(SortMode mode) {
 
 void TaskManager::listTasksFiltered(FilterMode mode) const {
 	if (tasks.empty()) {
-		std::cout << "����� ���� ���.\n";
+		std::cout << "Задач пока нет.\n";
 		return;
 	}
 

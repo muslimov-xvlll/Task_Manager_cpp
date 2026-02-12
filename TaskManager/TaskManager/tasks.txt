@@ -4,12 +4,6 @@ Title: Family
 Description: ssss
 Deadline: 12.07.2029
 ---
-ID: 3
-Status: InProgress
-Title: Обучение
-Description: изучить котлин
-Deadline: 12.03.2035
----
 ID: 6
 Status: InProgress
 Title: Саморазвитие

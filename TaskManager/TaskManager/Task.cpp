@@ -50,14 +50,14 @@ string Task::toString() const {
     std::stringstream ss;
     ss << "[" << id << "] "
         << "(" << statusToString(status) << ") "
-        << title << " � �������: " << deadline << "\n"
-        << "��������: " << description << "\n"
-        << "�������: " << createdDate;
+        << title << " — дедлайн: " << deadline << "\n"
+        << "Описание: " << description << "\n"
+        << "Создано: " << createdDate;
     return ss.str();
 }
 
 void Task::print() const {
-    // ����� ����� �� �������
+    // Выбор цвета по статусу
     switch (status) {
     case Status::ToDo:
         uiSetColor(UIColor::Warning);
@@ -70,10 +70,10 @@ void Task::print() const {
         break;
     }
 
-    // ����� ������
+    // Вывод задачи
     std::cout << toString() << "\n";
 
-    // ����� �����
+    // Сброс цвета
     uiSetColor(UIColor::Default);
 }
 
